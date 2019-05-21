@@ -1,4 +1,4 @@
-import Issue  from '../models/Issue';
+const Issue  = require('../models/Issue');
 
 const controllers = {
     getIssues(req, res) {

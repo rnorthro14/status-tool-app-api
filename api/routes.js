@@ -1,5 +1,5 @@
-import Issue  from '../models/Issue';
-import controller from './controller';
+const Issue  = require('../models/Issue');
+const controller = require('./controller');
 
 
 module.exports = function(app) {
