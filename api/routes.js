@@ -1,16 +1,16 @@
-const Issue  = require('../models/Issue');
+const Errors  = require('../models/Errors');
 const controller = require('./controller');
 
 
 module.exports = function(app) {
-    app.route('/issues').get(controller.getIssues);
+    app.route('/errors').get(controller.getErrors);
 
-    app.route('/issues/:id').get(controller.getIssueById);
+    app.route('/errors/:id').get(controller.getErrorById);
     
-    app.route('/issues/add').post(controller.addIssue);
+    app.route('/errors/add').post(controller.addError);
     
-    app.route('/issues/update/:id').post(controller.updateIssue);
+    app.route('/errors/update/:id').post(controller.updateError);
     
-    app.route('/issues/delete/:id').get(controller.deleteIssue);
+    app.route('/errors/delete/:id').get(controller.deleteError);
 };
 

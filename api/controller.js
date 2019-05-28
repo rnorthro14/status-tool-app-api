@@ -1,46 +1,47 @@
-const Issue  = require('../models/Issue');
+const Errors  = require('../models/Errors');
 
 const controllers = {
-    getIssues(req, res) {
-        Issue.find((err, issues) => {
+    getErrors(req, res) {
+        Errors.find((err, errors) => {
             if (err) {
                 console.log(err)
             } else {
-                res.json(issues);
+                res.json(errors);
             }
         });
     },
-    getIssueById(req, res) {
-        Issue.findById(req.params.id, (err, issue) => {
+    getErrorById(req, res) {
+        Errors.findById(req.params.id, (err, error) => {
             if (err) {
                 console.log(`cannot get issue: ${err}`);
             } else {
-                res.json(issue);
+                res.json(error);
             }
         });
     },
-    addIssue(req, res) {
-        let issue = new Issue(req.body);
-        issue.save()
-            .then(issue => {
-                res.status(200).json({'issue': 'Added successfully'});
+    addError(req, res) {
+        let error = new Errors(req.body);
+        error.save()
+            .then(error => {
+                res.status(200).json({'error': 'Added successfully'});
             })
             .catch(err => {
                 res.status(400).send('Failed to create a new record');
             })
     },
-    updateIssue(req, res) {
-        Issue.findById(req.params.id, (err, issue) => {
-            if (!issue)
-                return next(new Error('Could not load document'));
+    updateError(req, res) {
+        Errors.findById(req.params.id, (err, error) => {
+            if (!error)
+                return next(new Errors('Could not load document'));
             else {
-                issue.title = req.body.title;
-                issue.responsible = req.body.responsible;
-                issue.description = req.body.description;
-                issue.severity = req.body.severity;
-                issue.status = req.body.status;
+                error.sg_id = req.body.sg_id;
+                error.sg_name = req.body.sg_name;
+                error.esrm_errors = req.body.esrm_errors;
+                error.peak_start_date = req.body.peak_start_date;
+                error.peak_start_date = req.body.peak_start_date;
+                error.vod_peak = req.body.vod_peak;
     
-                issue.save().then(issue => {
+                error.save().then(error => {
                     res.json('Update done');
                 }).catch(err => {
                     res.status(400).send('Update failed');
@@ -48,12 +49,12 @@ const controllers = {
             }
         });
     },
-    deleteIssue(req, res) {
-        Issue.findByIdAndRemove({_id: req.params.id}, (err, issue) => {
+    deleteError(req, res) {
+        Errors.findByIdAndRemove({_id: req.params.id}, (err, error) => {
             if (err) {
                 res.json(err);
             } else {
-                res.json('Remove successfully');
+                res.json('Error Remove successfully');
             }
         });
     }

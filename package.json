@@ -1,7 +1,7 @@
 {
-  "name": "status-tool-app-api",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "Backend for status tool example",
+  "description": "Backend for vod-sg-utilization",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
